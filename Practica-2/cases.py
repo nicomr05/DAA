@@ -1,5 +1,5 @@
 # Clases de los Casos:
-class Caso:
+class Case:
     '''
     Description
     -----------
@@ -42,7 +42,7 @@ class Caso:
     def input(self) -> list:
         return self._input
 
-class CasoPrueba(Caso):
+class TestCase(Case):
     '''
     Description
     -----------
@@ -68,7 +68,7 @@ class CasoPrueba(Caso):
     def __init__(self, input, output) -> None:
         '''
         '''
-        Caso.__init__(self,input)
+        Case.__init__(self,input)
         self._output = output
     
     @property

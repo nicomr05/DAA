@@ -1,36 +1,8 @@
 from time import time
-from random import randint, choice, seed
 
-from func_ord import *
-from clases_casos import *
-
-
-# Variable de los tamaños de los casos:
-SIZES = [50,
-         100,
-         200,
-         400,
-         800,
-         1600,
-         2000,
-         3200,
-         4000,
-         5000,
-         6000,
-         6500,
-         8000
-         ]
-
-
-# Generador de listas para ordenar:
-def generate_random_input(sizes:list, f=selectionSort) -> list:
-    '''
-    '''
-    seed(1)
-    for size in sizes:
-        array = randint(-10,10,size) #creates an array with size random elements between -10 and 10
-    
-    return array
+from sorting_algs import *
+from test_func import *
+from cases import *
 
 
 # Funciones de tiempos:
@@ -47,7 +19,7 @@ def time_ns() -> float:
     '''
     return time() * (10**9)
 
-def medir_tiempo(n:int, f=selectionSort) -> tuple[float,bool]:
+def measure_time(n:int, alg=selectionSort, gen=ascending_order) -> tuple[float,bool]:
     '''
     Description
     -----------
@@ -57,7 +29,7 @@ def medir_tiempo(n:int, f=selectionSort) -> tuple[float,bool]:
     ----------
     n : int
         Tamaño del vector que se va a utilizar para medir el tiempo.
-    g : function
+    alg : function
         Función del algoritmo que se quiere evaluar.
     
     Returns
@@ -67,11 +39,10 @@ def medir_tiempo(n:int, f=selectionSort) -> tuple[float,bool]:
         que indica si se tuvo que promediar la respuesta por ser el tiempo de
         ejecución muy pequeño.
     '''
-    casos = []
 
-    vector, target = generate_input(n)
+    vector = gen(n)
     ta = time_ns()
-    f(vector, target)
+    alg(vector)
     tb = time_ns()
     t = tb - ta
     avg = False
@@ -82,16 +53,16 @@ def medir_tiempo(n:int, f=selectionSort) -> tuple[float,bool]:
 
         ta = time_ns()
         for _ in range(K):
-            vector, target = generate_input(n)
-            casos.append(Caso(vector,target))  
-            f(vector, target)
+            vector = gen(n) 
+            alg(vector)
+        
         tb = time_ns()
         t1 = tb - ta
 
         ta = time_ns()
         for _ in range(K):
-            vector, target = generate_input(n)
-            casos.append(Caso(vector,target))  
+            vector = gen(n)
+
         tb = time_ns()
         t2 = tb - ta
 
