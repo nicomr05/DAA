@@ -35,9 +35,9 @@ def create_table(sizes:list, alg=insertionSort, gen=ascending_order) -> PrettyTa
     for size in sizes:
         time, flag = measure_time(size, alg=alg, gen=gen)
         
-        lower_bound = f'{time / (size*log(size)):.4f}'
-        exact_bound = f'{time / (size**2):.4f}'
-        higher_bound = f'{time / (size**2.2):.4f}'
+        lower_bound = f'{time / (size*log(size)):.6f}'
+        exact_bound = f'{time / (size**2):.6f}'
+        higher_bound = f'{time / (size**2.2):.6f}'
         
         rows.append([size, flag, time, lower_bound, exact_bound, higher_bound])
     
