@@ -28,18 +28,31 @@ def create_table(sizes:list, alg=insertionSort, gen=ascending_order) -> PrettyTa
         Tabla con la información del algoritmo.
     '''
     table = PrettyTable()
-    
     rows = []
     
-    table.field_names = ['Size','Averaged','Time','O(nlog(n))','O(n²)','O(n²·²)']
-    for size in sizes:
-        time, flag = measure_time(size, alg=alg, gen=gen)
-        
-        lower_bound = f'{time / (size*log(size)):.6f}'
-        exact_bound = f'{time / (size**2):.6f}'
-        higher_bound = f'{time / (size**2.2):.6f}'
-        
-        rows.append([size, flag, time, lower_bound, exact_bound, higher_bound])
+    if alg == insertionSort and gen == ascending_order:
+        table.field_names = ['Size','Averaged','Time','O(log(n))','O(n)','O(nlog(n))']
+
+        for size in sizes:
+            time, flag = measure_time(size, alg=alg, gen=gen)
+
+            lower_bound = f'{time / (log(size)):.6f}'
+            exact_bound = f'{time / size:.6f}'
+            higher_bound = f'{time / (size*log(size)):.6f}'
+
+            rows.append([size, flag, time, lower_bound, exact_bound, higher_bound])
+    
+    else:
+        table.field_names = ['Size','Averaged','Time','O(nlog(n))','O(n²)','O(n²·²)']
+
+        for size in sizes:
+            time, flag = measure_time(size, alg=alg, gen=gen)
+
+            lower_bound = f'{time / (size*log(size)):.6f}'
+            exact_bound = f'{time / (size**2):.6f}'
+            higher_bound = f'{time / (size**2.2):.6f}'
+
+            rows.append([size, flag, time, lower_bound, exact_bound, higher_bound])
     
     table.add_rows(rows)
     
