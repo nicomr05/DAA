@@ -1,6 +1,20 @@
 # Sorting algorithms:
 def insertionSort(v:list) -> list:
     '''
+    Description
+    -----------
+    Sort the elements of a vector from smallest to largest.
+    
+    Parameters
+    ----------
+    v : list
+        Integer numbers vector.
+
+    Returns
+    -------
+    list
+        Vector with elements sorted in ascending order.
+        
     '''
     for i in range(1,len(v)):
         x = v[i]
@@ -14,8 +28,24 @@ def insertionSort(v:list) -> list:
 
     return v
 
+
+
+
 def bubbleSort(v:list) -> list:
     '''
+    Description
+    -----------
+    Sort the elements of a vector from smallest to largest.    
+    Parameters
+    ----------
+    v : list
+        Integer numbers vector.
+
+    Returns
+    -------
+    list
+        Vector with elements sorted in ascending order.
+        
     '''
     n = len(v)
 
@@ -26,8 +56,23 @@ def bubbleSort(v:list) -> list:
     
     return v
 
+
+
 def selectionSort(v:list) -> list:
     '''
+    Description
+    -----------
+    Sort the elements of a vector from smallest to largest.    
+    Parameters
+    ----------
+    v : list
+        Integer numbers vector.
+
+    Returns
+    -------
+    list
+        Vector with elements sorted in ascending order.
+   
     '''
     n = len(v)
 

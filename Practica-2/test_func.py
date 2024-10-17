@@ -7,11 +7,39 @@ from cases import TestCase
 # Vector generators:
 def descending_order(size:int) -> list:
     '''
+    Description
+    -----------
+    Create a random number vector of a specified size in descending order.
+    
+    Parameters
+    ----------
+    casos : list[TestCase]
+        Size of the vector you want to create. 
+        
+    Returns
+    -------
+    list
+        Random numbers vector in descending order.
     '''
     return arange(size//2, -size//2, -1)
 
+
+
 def random_order(size:int) -> list:
     '''
+    Description
+    -----------
+    Create a random number vector of a specified size in no specific order.
+    
+    Parameters
+    ----------
+    size : int
+        Size of the vector you want to create. 
+        
+    Returns
+    -------
+    list
+        Random numbers vector in no specific order.
     '''
     vector = []
 
@@ -20,34 +48,52 @@ def random_order(size:int) -> list:
     
     return vector
 
+
+
 def ascending_order(size:int) -> list:
     '''
+    Description
+    -----------
+    Create a random number vector of a specified size in ascending order.
+    
+    Parameters
+    ----------
+    size : int
+        Size of the vector you want to create. 
+        
+    Returns
+    -------
+    list
+        Random numbers vector in ascending order.
     '''
     return arange(-size//2, size//2, 1)
 
 
+
 # Testing function:
-def test(casos:list[TestCase], f=insertionSort) -> str|AssertionError:
+def test(casos:list[TestCase], alg=insertionSort) -> str|AssertionError:
     '''
     Description
     -----------
-    Testea los casos de prueba con la función del algoritmo que se le indique.
+    Test the test cases with the algorithm function that is indicated.
     
     Parameters
     ----------
-    casos : list[CasoPrueba]
-        Lista de objetos CasoPrueba que se quieren comprobar.
-
+    casos : list[TestCase]
+        List of test case objects to be checked.
+    alg: fuction
+        Function of the algorithm to be evaluated. 
+        
     Returns
     -------
     str
-        String que confirma que la ejecución es correcta, por si se quiere mostrar por pantalla.
+        A string that confirms that the execution is successful, in case you want to show it on the screen.
     
     AssertionError
-        Error con su mensaje asociado que indica que los tests no se ejecutaron correctamente.
+        Error with its associated message indicating that the tests were not executed correctly.
     '''
     for caso in casos:
-        sol = f(caso.input)
+        sol = alg(caso.input)
         
         assert caso.output == sol, f'Lista {caso.input}. Esperada salida {caso.output}, pero obtuvo {sol}.'
     

@@ -5,27 +5,27 @@ from times import measure_time
 from sorting_algs import *
 from test_func import *
 
-# Table creation function:
+
 def create_table(sizes:list, alg=insertionSort, gen=ascending_order) -> PrettyTable:
     '''
     Description
     -----------
-    Crea una tabla con las columnas "n" (tamaño de muestra), "Averaged"
-    (indica si se promedió el tiempo), "Time" (tiempo), "O(nlog(n))", "O(n²)"
-    y "O(n²·²)" (relaciones del algoritmo con un algoritmo nlogn, uno n² y
-    uno n²·²).
+    Create a table with the columns "n" (sample size), "Averaged"
+    (indicates if the time was averaged), "Time" (execution time), "O(nlog(n))", "O(n²)"
+    and "O(n²·²)" (algorithm relationships with a nlogn algorithm, a n² algorithm and a n²·²).
     
     Parameters
     ----------
-    sizes : list
-        Lista de los tamaños de muestra.
-    f : function
-        Función del algoritmo que se quiere evaluar.
-    
+    sizes: list
+        List with sample sizes.
+    alg: function
+        Function of the algorithm to be evaluated. 
+    gen: function
+        Fuction that generates an vector.
     Returns
     -------
     PrettyTable
-        Tabla con la información del algoritmo.
+        Table with the information of the algorithm.
     '''
     table = PrettyTable()
     rows = []

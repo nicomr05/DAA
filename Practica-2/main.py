@@ -1,4 +1,3 @@
-#!env/bin/python
 
 from cases import *
 from sorting_algs import *
@@ -32,7 +31,7 @@ def main() -> None:
     '''
     Description
     -----------
-    LLama a las funciones de creación de tablas y las muestra por pantalla.
+    It calls up the table creation functions and displays them on the screen.
     
     Returns
     -------

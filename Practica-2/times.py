@@ -9,34 +9,38 @@ def time_ns() -> float:
     '''
     Description
     -----------
-    Devuelve el tiempo actual del sistema en nanosegundos.
+    Returns the current system time in nanoseconds.
 
     Returns
     -------
     float
-        Tiempo del sistema en ns.
+        System time in ns.
     '''
+
     return time() * (10**9)
+
 
 def measure_time(n:int, alg=selectionSort, gen=ascending_order) -> tuple[float,bool]:
     '''
     Description
     -----------
-    Mide el tiempo de ejecución de un algoritmo.
+    It measures the execution time of an algorithm.
     
     Parameters
     ----------
     n : int
         Tamaño del vector que se va a utilizar para medir el tiempo.
-    alg : function
-        Función del algoritmo que se quiere evaluar.
+    alg: function
+        Function of the algorithm to be evaluated. 
+    gen: function
+        Fuction that generates an vector.
     
     Returns
     -------
     tuple[float,bool]
-        Tupla que contiene el tiempo de ejecución que se ha medido y un booleano
-        que indica si se tuvo que promediar la respuesta por ser el tiempo de
-        ejecución muy pequeño.
+        Tuple containing the runtime that has been measured and a Boolean
+        which indicates whether the response had to be averaged because it was the time of
+        very small execution.
     '''
     vector = gen(n)
     ta = time_ns()
