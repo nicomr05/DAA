@@ -2,6 +2,7 @@ from random import randint
 from numpy import arange
 
 from cases import TestCase
+from sorting_algs import insertionSort
 
 
 # Vector generators:
@@ -68,7 +69,7 @@ def ascending_order(size:int) -> list:
 
 
 # Testing function:
-def test(cases:list[TestCase], alg:function) -> str|AssertionError:
+def test(cases:list[TestCase], alg=insertionSort) -> str|AssertionError:
     '''
     Description
     -----------

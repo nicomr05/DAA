@@ -1,4 +1,6 @@
 from time import time
+from sorting_algs import insertionSort
+from test_func import ascending_order
 
 
 # Time measuring functions:
@@ -16,7 +18,7 @@ def time_ns() -> float:
     return time() * (10**9)
 
 
-def measure_time(n:int, alg:function, gen:function) -> tuple[float,bool]:
+def measure_time(n:int, alg=insertionSort, gen=ascending_order) -> tuple[float,bool]:
     '''
     Description
     -----------

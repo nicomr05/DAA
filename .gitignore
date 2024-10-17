@@ -1,3 +1,5 @@
 *.code-workspace
 **/__pycache__/
 **/env
+**/Archivos-de-texto
+*.txt

@@ -7,7 +7,7 @@ from test_func import ascending_order
 
 
 # Table creation function:
-def create_table(sizes:list, alg:function, gen:function) -> PrettyTable:
+def create_table(sizes:list, alg=insertionSort, gen=ascending_order) -> PrettyTable:
     '''
     Description
     -----------
