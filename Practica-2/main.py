@@ -1,3 +1,4 @@
+#!env/bin/python
 
 from cases import *
 from sorting_algs import *
@@ -14,16 +15,7 @@ TEST_VECTORS = [TestCase(input=[-9,4,13,-1,-5],    output=[-9,-5,-1,4,13]),
                 TestCase(input=[1,2,3,4,4,5,6,7],  output=[1,2,3,4,4,5,6,7])
                 ]
 
-SIZES = [800,
-         1600,
-         2000,
-         3200,
-         4000,
-         5000,
-         6000,
-         6500,
-         7000
-         ]
+SIZES = [50*2**x for x in range(8)]
 
 
 # Main function:
@@ -45,7 +37,7 @@ def main() -> None:
     
 
     for alg in algorithms:
-        test(TEST_VECTORS, f=alg)
+        test(TEST_VECTORS, alg=alg)
     
     for alg in range(len(algorithms)):
         print(f'\n\n{alg_names[alg]}\n')

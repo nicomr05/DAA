@@ -22,6 +22,7 @@ def create_table(sizes:list, alg=insertionSort, gen=ascending_order) -> PrettyTa
         Function of the algorithm to be evaluated. 
     gen: function
         Fuction that generates an vector.
+    
     Returns
     -------
     PrettyTable

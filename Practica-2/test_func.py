@@ -71,7 +71,7 @@ def ascending_order(size:int) -> list:
 
 
 # Testing function:
-def test(casos:list[TestCase], alg=insertionSort) -> str|AssertionError:
+def test(cases:list[TestCase], alg=insertionSort) -> str|AssertionError:
     '''
     Description
     -----------
@@ -92,9 +92,9 @@ def test(casos:list[TestCase], alg=insertionSort) -> str|AssertionError:
     AssertionError
         Error with its associated message indicating that the tests were not executed correctly.
     '''
-    for caso in casos:
-        sol = alg(caso.input)
+    for case in cases:
+        sol = alg(case.input)
         
-        assert caso.output == sol, f'Lista {caso.input}. Esperada salida {caso.output}, pero obtuvo {sol}.'
+        assert case.output == sol, f'List {case.input}. Expected output {case.output}, but got {sol}.'
     
-    return 'Ejecución correcta.'
+    return 'Correct output.'
