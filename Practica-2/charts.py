@@ -3,10 +3,10 @@ from prettytable import PrettyTable
 
 from times import measure_time
 from sorting_algs import *
+from test_func import *
 
-
-# Función de creación de tablas:
-def create_table(sizes:list, f=selectionSort) -> PrettyTable:
+# Table creation function:
+def create_table(sizes:list, alg=insertionSort, gen=ascending_order) -> PrettyTable:
     '''
     Description
     -----------
@@ -29,7 +29,18 @@ def create_table(sizes:list, f=selectionSort) -> PrettyTable:
     '''
     table = PrettyTable()
     
-    table.add_row()
+    rows = []
     
+    table.field_names = ['Size','Averaged','Time','O(nlog(n))','O(n²)','O(n²·²)']
+    for size in sizes:
+        time, flag = measure_time(size, alg=alg, gen=gen)
+        
+        lower_bound = f'{time / (size*log(size)):.4f}'
+        exact_bound = f'{time / (size**2):.4f}'
+        higher_bound = f'{time / (size**2.2):.4f}'
+        
+        rows.append([size, flag, time, lower_bound, exact_bound, higher_bound])
+    
+    table.add_rows(rows)
     
     return table

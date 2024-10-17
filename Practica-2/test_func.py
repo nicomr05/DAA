@@ -4,27 +4,29 @@ from numpy import arange
 from sorting_algs import *
 from cases import TestCase
 
-# Generadores de listas para ordenar:
+# Vector generators:
 def descending_order(size:int) -> list:
     '''
     '''
-    array = arange(size//2, -size//2, -1)
-    return array
+    return arange(size//2, -size//2, -1)
 
 def random_order(size:int) -> list:
     '''
     '''
-    array = randint(-100, 100, size)
-    return array
+    vector = []
+
+    for _ in range(size):
+        vector.append(randint(-size//2, size//2))
+    
+    return vector
 
 def ascending_order(size:int) -> list:
     '''
     '''
-    array = arange(-size//2, size//2, 1)
-    return array
+    return arange(-size//2, size//2, 1)
 
 
-# Función de testeo:
+# Testing function:
 def test(casos:list[TestCase], f=insertionSort) -> str|AssertionError:
     '''
     Description

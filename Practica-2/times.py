@@ -2,10 +2,9 @@ from time import time
 
 from sorting_algs import *
 from test_func import *
-from cases import *
 
 
-# Funciones de tiempos:
+# Time measuring functions:
 def time_ns() -> float:
     '''
     Description
@@ -39,7 +38,6 @@ def measure_time(n:int, alg=selectionSort, gen=ascending_order) -> tuple[float,b
         que indica si se tuvo que promediar la respuesta por ser el tiempo de
         ejecución muy pequeño.
     '''
-
     vector = gen(n)
     ta = time_ns()
     alg(vector)

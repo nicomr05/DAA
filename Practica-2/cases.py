@@ -1,48 +1,5 @@
-# Clases de los Casos:
-class Case:
-    '''
-    Description
-    -----------
-    Clase para un caso que se quiere evaluar.
-    La clase contiene el vector y el target necesarios para evaluar los
-    algoritmos.
-
-    Attributes
-    ----------
-    input : list|set
-        Vector de números sobre el que se aplicarán los algoritmos.
-    target : int
-        Cantidad objetivo que sumarán las parejas de números.
-        
-    Methods
-    -------
-    __init__(self, input, target) -> None:
-        Constructor de la clase Caso, inicializa sus atributos.
-    '''
-    def __init__(self, input) -> None:
-        '''
-        Description
-        -----------
-        Asigna atributos al objeto.
-        
-        Parameters
-        ----------
-        input : list|set
-            Vector de números sobre el que se aplicarán los algoritmos.
-        target : int
-            Cantidad objetivo que sumarán las parejas de números.
-        
-        Returns
-        -------
-        None.
-        '''
-        self._input = input
-
-    @property
-    def input(self) -> list:
-        return self._input
-
-class TestCase(Case):
+# Test case class:
+class TestCase:
     '''
     Description
     -----------
@@ -68,9 +25,13 @@ class TestCase(Case):
     def __init__(self, input, output) -> None:
         '''
         '''
-        Case.__init__(self,input)
+        self._input = input
         self._output = output
     
     @property
     def output(self) -> list:
         return self._output
+    
+    @property
+    def input(self) -> list:
+        return self._input
