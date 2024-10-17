@@ -1,8 +1,8 @@
 from random import randint
 from numpy import arange
 
-from sorting_algs import *
 from cases import TestCase
+
 
 # Vector generators:
 def descending_order(size:int) -> list:
@@ -22,7 +22,6 @@ def descending_order(size:int) -> list:
         Random numbers vector in descending order.
     '''
     return arange(size//2, -size//2, -1)
-
 
 
 def random_order(size:int) -> list:
@@ -49,7 +48,6 @@ def random_order(size:int) -> list:
     return vector
 
 
-
 def ascending_order(size:int) -> list:
     '''
     Description
@@ -69,9 +67,8 @@ def ascending_order(size:int) -> list:
     return arange(-size//2, size//2, 1)
 
 
-
 # Testing function:
-def test(cases:list[TestCase], alg=insertionSort) -> str|AssertionError:
+def test(cases:list[TestCase], alg:function) -> str|AssertionError:
     '''
     Description
     -----------

@@ -1,8 +1,5 @@
 from time import time
 
-from sorting_algs import *
-from test_func import *
-
 
 # Time measuring functions:
 def time_ns() -> float:
@@ -16,11 +13,10 @@ def time_ns() -> float:
     float
         System time in ns.
     '''
-
     return time() * (10**9)
 
 
-def measure_time(n:int, alg=selectionSort, gen=ascending_order) -> tuple[float,bool]:
+def measure_time(n:int, alg:function, gen:function) -> tuple[float,bool]:
     '''
     Description
     -----------
@@ -49,8 +45,9 @@ def measure_time(n:int, alg=selectionSort, gen=ascending_order) -> tuple[float,b
     t = tb - ta
     avg = False
 
-    umbral = 5*(10**5)    # Umbral de confianza
-    if t < umbral:
+    threshold = 5*(10**5)    # Confidence threshold 
+    
+    if t < threshold:
         K = 1000
 
         ta = time_ns()

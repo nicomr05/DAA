@@ -2,11 +2,12 @@ from math import log
 from prettytable import PrettyTable
 
 from times import measure_time
-from sorting_algs import *
-from test_func import *
+from sorting_algs import insertionSort
+from test_func import ascending_order
 
 
-def create_table(sizes:list, alg=insertionSort, gen=ascending_order) -> PrettyTable:
+# Table creation function:
+def create_table(sizes:list, alg:function, gen:function) -> PrettyTable:
     '''
     Description
     -----------
