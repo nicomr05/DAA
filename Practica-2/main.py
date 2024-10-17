@@ -45,7 +45,7 @@ def main() -> None:
     
 
     for alg in algorithms:
-        test(TEST_VECTORS, f=alg)
+        test(TEST_VECTORS, alg=alg)
     
     for alg in range(len(algorithms)):
         print(f'\n\n{alg_names[alg]}\n')
