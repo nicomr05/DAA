@@ -1,5 +1,7 @@
 import numpy as np
 
+
+#Converting functions:
 def to_adjacency_matrix(V:set, E:set) -> np.matrix:
     '''
     Description
@@ -27,9 +29,7 @@ def to_adjacency_matrix(V:set, E:set) -> np.matrix:
     return M
 
 
-
-
-def to_vertices_and_edges(M:np.matrix) -> tuple(set,set):
+def to_vertices_and_edges(M:np.matrix) -> tuple[set,set]:
     '''
     Description
     -----------
@@ -59,8 +59,8 @@ def to_vertices_and_edges(M:np.matrix) -> tuple(set,set):
     return (V,E)
 
 
-
-def create_graph(n:int, max_distance:int, adjacency_matrix=False) -> np.matrix|tuple[set,set]:
+#Graph creating function:
+def create_graph(n:int, max_distance=50, adjacency_matrix=False) -> np.ndarray|tuple[set,set]:
     '''
     Description
     -----------
@@ -77,13 +77,14 @@ def create_graph(n:int, max_distance:int, adjacency_matrix=False) -> np.matrix|t
         
     Returns
     -------
-    np.matrix
+    np.ndarray
         Adjacency matrix with the weights of the graph with vertices V and edges E.
+    
     or
     
     tuple(set,set)
-        Tuple with 2 sets: V(set of integer numbers that identifies the vertices of a graph) and 
-        E(set of tuples with 2 vertex identifiers and the weight of the edge that joins them).
+        Tuple with 2 sets: V (set of integer numbers that identifies the vertices of a graph) and 
+        E (set of tuples with 2 vertex identifiers and the weight of the edge that joins them).
     '''
     a = np.random.randint(low=1, high=max_distance, size=(n,n))
     M = np.tril(a,-1) + np.tril(a, -1).T

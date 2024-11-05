@@ -1,6 +1,46 @@
 from time import time
-from algs import kruskal
-from test_func import ascending_order
+
+from cases import TestCase
+from algs import kruskal, prim
+from representations import create_graph
+
+
+# Testing function:
+def test(cases:list[TestCase], alg=kruskal) -> str|AssertionError:
+    '''
+    Description
+    -----------
+    Test the test cases with the algorithm function that is indicated.
+
+    Parameters
+    ----------
+    casos : list[TestCase]
+        List of test case objects to be checked.
+    alg: fuction
+        Function of the algorithm to be evaluated. 
+
+    Returns
+    -------
+    str
+        A string that confirms that the execution is successful, in case you want to show it on the screen.
+
+    AssertionError
+        Error with its associated message indicating that the tests were not executed correctly.
+    '''
+    for case in cases:
+
+        if alg == kruskal:
+            graph = [case.V, case.E]
+
+        elif alg == prim:
+            graph = [case.AdMatrix]
+
+        sol = alg(*graph)
+
+
+        assert case.output == sol, f'Graph {graph}. Expected output {case.output}, but got {sol}.'
+
+    return 'Correct output.'
 
 
 # Time measuring functions:
@@ -17,8 +57,7 @@ def time_ns() -> float:
     '''
     return time() * (10**9)
 
-
-def measure_time(n:int, alg=kruskal, gen=ascending_order) -> tuple[float,bool]:
+def measure_time(n:int, adjacency:bool, alg=kruskal) -> tuple[float,bool]:
     '''
     Description
     -----------
@@ -40,7 +79,7 @@ def measure_time(n:int, alg=kruskal, gen=ascending_order) -> tuple[float,bool]:
         which indicates whether the response had to be averaged because it was the time of
         very small execution.
     '''
-    vector = gen(n)
+    vector = create_graph(n, adjacency_matrix=adjacency)
     ta = time_ns()
     alg(vector)
     tb = time_ns()
@@ -54,21 +93,20 @@ def measure_time(n:int, alg=kruskal, gen=ascending_order) -> tuple[float,bool]:
 
         ta = time_ns()
         for _ in range(K):
-            vector = gen(n) 
+            vector = create_graph(n, adjacency_matrix=adjacency)
             alg(vector)
-        
+
         tb = time_ns()
         t1 = tb - ta
 
         ta = time_ns()
         for _ in range(K):
-            vector = gen(n)
+            vector = create_graph(n, adjacency_matrix=adjacency)
 
         tb = time_ns()
         t2 = tb - ta
 
         t = (t1 - t2) / K
         avg = True
-    
-    
+
     return t, avg
