@@ -29,8 +29,6 @@ def insertionSort(v:list) -> list:
     return v
 
 
-
-
 def bubbleSort(v:list) -> list:
     '''
     Description
@@ -55,7 +53,6 @@ def bubbleSort(v:list) -> list:
                 v[j], v[j+1] = v[j+1], v[j]
     
     return v
-
 
 
 def selectionSort(v:list) -> list:

@@ -1,9 +1,10 @@
+#!env/bin/python
 
-from cases import *
-from sorting_algs import *
-from test_func import *
-from times import measure_time
+from cases import TestCase
+from sorting_algs import insertionSort, bubbleSort, selectionSort
+from test_func import test, ascending_order, random_order, descending_order
 from charts import create_table
+
 
 # Vector variables:
 TEST_VECTORS = [TestCase(input=[-9,4,13,-1,-5],    output=[-9,-5,-1,4,13]),
@@ -14,16 +15,7 @@ TEST_VECTORS = [TestCase(input=[-9,4,13,-1,-5],    output=[-9,-5,-1,4,13]),
                 TestCase(input=[1,2,3,4,4,5,6,7],  output=[1,2,3,4,4,5,6,7])
                 ]
 
-SIZES = [800,
-         1600,
-         2000,
-         3200,
-         4000,
-         5000,
-         6000,
-         6500,
-         7000
-         ]
+SIZES = [50*2**x for x in range(8)]
 
 
 # Main function:
@@ -53,8 +45,8 @@ def main() -> None:
         for gen in range(len(generators)):
             print('\t',gen_names[gen],'\n')
             print(f'{create_table(SIZES, alg=algorithms[alg], gen=generators[gen])}\n')
-            
-                
+
+    
 
 if __name__ == '__main__':
     main()

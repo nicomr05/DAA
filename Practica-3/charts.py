@@ -2,12 +2,12 @@ from math import log
 from prettytable import PrettyTable
 
 from times import measure_time
-from sorting_algs import insertionSort
+from algs import kruskal
 from test_func import ascending_order
 
 
 # Table creation function:
-def create_table(sizes:list, alg=insertionSort, gen=ascending_order) -> PrettyTable:
+def create_table(sizes:list, alg=kruskal, gen=create_graph, couts=list) -> PrettyTable:
     '''
     Description
     -----------
@@ -37,24 +37,10 @@ def create_table(sizes:list, alg=insertionSort, gen=ascending_order) -> PrettyTa
 
         for size in sizes:
             time, flag = measure_time(size, alg=alg, gen=gen)
-
-            lower_bound = f'{time / (log(size)):.6f}'
-            exact_bound = f'{time / size:.6f}'
-            higher_bound = f'{time / (size*log(size)):.6f}'
-
-            rows.append([size, flag, time, lower_bound, exact_bound, higher_bound])
-    
-    else:
-        table.field_names = ['Size','Averaged','Time','O(nlog(n))','O(n²)','O(n²·²)']
-
-        for size in sizes:
-            time, flag = measure_time(size, alg=alg, gen=gen)
-
-            lower_bound = f'{time / (size*log(size)):.6f}'
-            exact_bound = f'{time / (size**2):.6f}'
-            higher_bound = f'{time / (size**2.2):.6f}'
-
-            rows.append([size, flag, time, lower_bound, exact_bound, higher_bound])
+            
+            for cout in couts:
+                bound = f'{time / cout(size):.6f}'
+                rows.append([size, flag, time, bound]) #! Corregir
     
     table.add_rows(rows)
     
