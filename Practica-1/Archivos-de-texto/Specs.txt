@@ -1,7 +1,0 @@
-Modelo: DELL Inspiron 13 7386
-SO: Debian GNU/Linux 12 (bookworm), 64 bits, GNOME 43.9
-CPU: Intel Core i7-8565U x 8
-Chipset: En el procesador
-GPU: Mesa Intel UHD Graphics 620 (WHL GT2)
-RAM: 16,0 GB
-Disco: 512,1 GB
