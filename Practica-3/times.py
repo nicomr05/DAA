@@ -30,12 +30,12 @@ def test(cases:list[TestCase], alg=kruskal) -> str|AssertionError:
     for case in cases:
         if alg == kruskal:
             graph = (case.V, case.E)
-            print(kruskal(*graph))
+            #print(kruskal(*graph))
             sol = alg(*graph)
 
         elif alg == prim:
             graph = case.AdMatrix
-            print(prim(graph))
+            #print(prim(graph))
             sol = alg(graph)
 
         assert case.output == sol, f'\n\nGraph:\n{graph}.\n\nExpected output {case.output}, but got {sol}.\n'

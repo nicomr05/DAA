@@ -47,7 +47,6 @@ def prim(M:ndarray) -> set:
     '''
     # Initialization:
     n = len(M)
-
     mindist = [0 for _ in range(n)] #size n
     nearest = [1 for _ in range(n)] #size n
 
@@ -60,18 +59,18 @@ def prim(M:ndarray) -> set:
     for i in range(n-1):
         minimum = float('inf')
 
-    for j in range(1,n):
-        if 0 < mindist[j] < minimum:
-            minimum = mindist[j]
-            k = j
+        for j in range(1,n):
+            if 0 < mindist[j] < minimum:
+                minimum = mindist[j]
+                k = j
 
-    a = (nearest[k], k, M[nearest[k],k])
-    T = T.add(a)
-    mindist[k] = 0
+        a = (nearest[k], k, M[nearest[k],k])
+        T.add(a)
+        mindist[k] = 0
 
-    for j in range(1,n):
-        if 0 < M[j,k] < mindist[j]:
-            mindist[j] = M[j,k]
-            nearest[j] = k
-
+        for j in range(1,n):
+            if 0 < M[j,k] < mindist[j]:
+                mindist[j] = M[j,k]
+                nearest[j] = k
+    
     return T
