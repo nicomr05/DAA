@@ -28,17 +28,17 @@ def test(cases:list[TestCase], alg=kruskal) -> str|AssertionError:
         Error with its associated message indicating that the tests were not executed correctly.
     '''
     for case in cases:
-
         if alg == kruskal:
-            graph = [case.V, case.E]
+            graph = (case.V, case.E)
+            print(kruskal(*graph))
+            sol = alg(*graph)
 
         elif alg == prim:
-            graph = [case.AdMatrix]
+            graph = case.AdMatrix
+            print(prim(graph))
+            sol = alg(graph)
 
-        sol = alg(*graph)
-
-
-        assert case.output == sol, f'Graph {graph}. Expected output {case.output}, but got {sol}.'
+        assert case.output == sol, f'\n\nGraph:\n{graph}.\n\nExpected output {case.output}, but got {sol}.\n'
 
     return 'Correct output.'
 

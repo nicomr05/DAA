@@ -1,3 +1,4 @@
+#!env/bin/python
 from math import log
 
 from times import test
@@ -23,8 +24,8 @@ SIZES = [10*2**x for x in range(1,9)]
 def main() -> None:
     '''
     '''
-    test(TEST_CASES, alg=kruskal)
-    test(TEST_CASES, alg=prim)
+    test(TEST_CASES, kruskal)
+    test(TEST_CASES, prim)
 
     kruskal_couts = lambda n: (n, n*log(n), n**2)
     prim_couts = lambda n: (n*log(n), n**2, n**2.5)
@@ -34,8 +35,6 @@ def main() -> None:
 
     print(create_table(SIZES, kruskal_couts, kruskal_cout_names, kruskal))
     print(create_table(SIZES, prim_couts, prim_cout_names, prim))
-
-    return 0
 
 
 if __name__ == '__main__':

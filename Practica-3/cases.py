@@ -1,3 +1,5 @@
+from numpy import ndarray
+
 from representations import to_adjacency_matrix
 
 
@@ -29,17 +31,17 @@ class TestCase:
         self._output = output
     
     @property
-    def V(self) -> list:
+    def V(self) -> set:
         return self._V
 
     @property
-    def E(self) -> list:
+    def E(self) -> set:
         return self._E
 
     @property
-    def AdMatrix(self) -> list:
+    def AdMatrix(self) -> ndarray:
         return self._AdMatrix
 
     @property
-    def output(self) -> list:
+    def output(self) -> set:
         return self._output

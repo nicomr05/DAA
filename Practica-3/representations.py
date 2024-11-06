@@ -2,7 +2,7 @@ import numpy as np
 
 
 #Converting functions:
-def to_adjacency_matrix(V:set, E:set) -> np.matrix:
+def to_adjacency_matrix(V:set, E:set) -> np.ndarray:
     '''
     Description
     -----------
@@ -17,19 +17,19 @@ def to_adjacency_matrix(V:set, E:set) -> np.matrix:
         
     Returns
     -------
-    np.matrix
+    np.ndarray
         Adjacency matrix with the weights of the graph with vertices V and edges E. 
     '''
     M = np.zeros((len(V), len(V)), dtype=int)
     
-    for i,j,w in E:
+    for i, j, w in E:
         M[i][j] = w
         M[j][i] = w
     
     return M
 
 
-def to_vertices_and_edges(M:np.matrix) -> tuple[set,set]:
+def to_vertices_and_edges(M:np.ndarray) -> tuple[set,set]:
     '''
     Description
     -----------
@@ -37,7 +37,7 @@ def to_vertices_and_edges(M:np.matrix) -> tuple[set,set]:
     
     Parameters
     ----------
-    M : np.matrix
+    M : np.ndarray
         Adjacency matrix with the weights of the edges of the graph.
         
     Returns
