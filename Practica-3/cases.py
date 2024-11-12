@@ -27,8 +27,8 @@ class TestCase:
         '''
         self._V = V
         self._E = E
-        self._AdMatrix = to_adjacency_matrix(V,E)
-        self._output = output
+        self._AdMatrix = to_adjacency_matrix(V, E)
+        self._output = to_adjacency_matrix(V, output)
     
     @property
     def V(self) -> set:

@@ -2,7 +2,7 @@ from time import time
 
 from cases import TestCase
 from algs import kruskal, prim
-from representations import create_graph
+from representations import create_graph, to_adjacency_matrix
 
 
 # Testing function:
@@ -30,15 +30,18 @@ def test(cases:list[TestCase], alg=kruskal) -> str|AssertionError:
     for case in cases:
         if alg == kruskal:
             graph = (case.V, case.E)
-            #print(kruskal(*graph))
             sol = alg(*graph)
 
         elif alg == prim:
             graph = case.AdMatrix
-            #print(prim(graph))
             sol = alg(graph)
 
-        assert case.output == sol, f'\n\nGraph:\n{graph}.\n\nExpected output {case.output}, but got {sol}.\n'
+        result = to_adjacency_matrix(case.V, sol)
+        
+        size = len(case.output)
+        for row in range(size):
+            for col in range(size):
+                assert case.output[row][col] == result[row][col], f'\n\nGraph:\n{graph}.\n\nExpected output:\n{case.output}\n\nBut got:\n{result}.\n'
 
     return 'Correct output.'
 
@@ -79,9 +82,9 @@ def measure_time(n:int, adjacency:bool, alg=kruskal) -> tuple[float,bool]:
         which indicates whether the response had to be averaged because it was the time of
         very small execution.
     '''
-    vector = create_graph(n, adjacency_matrix=adjacency)
+    graph = create_graph(n, adjacency_matrix=adjacency)
     ta = time_ns()
-    alg(vector)
+    alg(graph)
     tb = time_ns()
     t = tb - ta
     avg = False

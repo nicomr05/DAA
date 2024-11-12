@@ -35,7 +35,7 @@ def create_table(sizes:list, couts, cout_names:list, alg=kruskal) -> PrettyTable
     elif alg == prim:
         adjacency = True
 
-    table.field_names = ['Size','Averaged','Time'].append(cout_names)
+    table.field_names = ['Size','Averaged','Time'] + cout_names
 
     for size in sizes:
         time, flag = measure_time(size, alg=alg, adjacency=adjacency)
