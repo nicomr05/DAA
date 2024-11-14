@@ -1,31 +1,32 @@
 from time import time
 
-from cases import TestCase
 from algs import kruskal, prim
 from representations import create_graph, to_adjacency_matrix
 
 
 # Testing function:
-def test(cases:list[TestCase], alg=kruskal) -> str|AssertionError:
+def test(cases:list, alg=kruskal) -> str|AssertionError:
     '''
     Description
     -----------
-    Test the test cases with the algorithm function that is indicated.
+    Evaluate the test cases with the algorithm function (alg) that is indicated.
 
     Parameters
     ----------
-    casos : list[TestCase]
-        List of test case objects to be checked.
+    cases : list
+        List of TestCase objects to be checked.
     alg: fuction
         Function of the algorithm to be evaluated. 
 
     Returns
     -------
     str
-        A string that confirms that the execution is successful, in case you want to show it on the screen.
+        A string that confirms that the execution is successful, in case you want to print it.
+
+    or
 
     AssertionError
-        Error with its associated message indicating that the tests were not executed correctly.
+        Error with its associated message indicating that the tests failed to match the expected output.
     '''
     for case in cases:
         if alg == kruskal:
@@ -46,7 +47,7 @@ def test(cases:list[TestCase], alg=kruskal) -> str|AssertionError:
     return 'Correct output.'
 
 
-# Time measuring functions:
+# Time-measuring functions:
 def time_ns() -> float:
     '''
     Description
@@ -64,23 +65,22 @@ def measure_time(n:int, adjacency:bool, alg=kruskal) -> tuple[float,bool]:
     '''
     Description
     -----------
-    Measures the execution time of an algorithm and averages the te.
-    
+    Measures the execution time of an algorithm and averages it with other repetitions
+    if the execution time was too small.
+
     Parameters
     ----------
     n : int
         Tamaño del vector que se va a utilizar para medir el tiempo.
     alg: function
-        Function of the algorithm to be evaluated. 
-    gen: function
-        Fuction that generates an vector.
-    
+        Function of the algorithm to be evaluated.
+
     Returns
     -------
-    tuple[float,bool]
-        Tuple containing the runtime that has been measured and a Boolean
-        which indicates whether the response had to be averaged because it was the time of
-        very small execution.
+    tuple
+        Tuple containing the runtime that has been measured and a boolean value
+        which indicates whether the response had to be averaged due to a small
+        execution time.
     '''
     graph = create_graph(n, adjacency_matrix=adjacency)
 

@@ -8,22 +8,42 @@ class TestCase:
     '''
     Description
     -----------
-    Class for a test case to evaluate sorting algorithms.
+    Class for a test case to evaluate graph algorithms.
 
     Attributes
     ----------
-    input : list
-        vector of integer numbers on which the algorithms will be applied.
-    output : list
-        expected vector with sorted elements after passing it through sorting algorithms.
-        
+    V : set
+        Vertices of the graph.
+    E : set
+        Weighted edges of the graph.
+    AdMatrix : ndarray
+        Adjacency matrix of the graph.
+    output : ndarray
+        Adjacency matrix of the minimum spanning tree of the graph (expected solution).
+
     Methods
     -------
-    __init__(self, input, output) -> None:
+    __init__(self, V, E, output) -> None:
         Constructor of the TestCase class, initializes its attributes.
     '''
-    def __init__(self, V:set, E:set, output:set) -> None:
+    def __init__(self, V:set, E:set, output:ndarray) -> None:
         '''
+        Description
+        -----------
+        Class initializer that creates the sets needed for the class TestCase.
+
+        Parameters
+        ----------
+        V : set
+            Vertices of the graph.
+        E : set
+            Weighted edges of the graph.
+        output : ndarray
+            Adjacency matrix of the minimum spanning tree of the graph (expected solution).
+
+        Returns
+        -------
+        None
         '''
         self._V = V
         self._E = E

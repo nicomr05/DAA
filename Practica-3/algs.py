@@ -3,6 +3,21 @@ from numpy import ndarray
 # Auxiliary functions:
 def _find (u:int, S:list) -> int:
     '''
+    Description
+    -----------
+    Finds the related component u_S that contains u.
+
+    Parameters
+    ----------
+    u : int
+        Vertex that will be contained in the related component found.
+    S : list
+        Array of related components of the graph.
+
+    Returns
+    -------
+    int
+        Related component that was found.
     '''
     u_S = S[u]
 
@@ -13,6 +28,22 @@ def _find (u:int, S:list) -> int:
 
 def _merge (u:int, v_S:int, S:list) -> None:
     '''
+    Description
+    -----------
+    Merges two related components into one inside the set S.
+
+    Parameters
+    ----------
+    u : int
+        Representant of the first r.c.
+    v_S : int
+        Another r.c. differente from the r.c. of u.
+    S : list
+        Array of r.cc. of the graph.
+
+    Returns
+    -------
+    None
     '''
     u_S = S[u]
 
@@ -27,6 +58,20 @@ def _merge (u:int, v_S:int, S:list) -> None:
 # Graph Algorithms:
 def kruskal(graph_tuple:tuple) -> set:
     '''
+    Description
+    -----------
+    Finds a minimum spanning tree of a graph (V,E) via the Kruskal algorithm.
+
+    Parameters
+    ----------
+    graph_tuple : tuple
+        Tuple (V,E) which represents a graph, meaning that V is its set of vertices
+        and E its set of weighted edges.
+
+    Returns
+    -------
+    set
+        A minimum spanning tree of the graph.
     '''
     V, E = graph_tuple
     E_list = sorted(E, key=lambda t: t[2])
@@ -36,7 +81,7 @@ def kruskal(graph_tuple:tuple) -> set:
     idx = 0
     while len(T) < (len(V) - 1):
         a:tuple = E_list[idx]       # select the tuple (u,v,w) that has not been yet analized and that minimizes w;
-        u_S = _find(a[0], S)        # "find" is a function that finds the set of S where u is
+        u_S = _find(a[0], S)
         v_S = _find(a[1], S)
 
         if u_S != v_S:
@@ -48,6 +93,19 @@ def kruskal(graph_tuple:tuple) -> set:
 
 def prim(M:ndarray) -> set:
     '''
+    Description
+    -----------
+    Finds a minimum spanning tree of a graph (V,E) via the Prim algorithm.
+
+    Parameters
+    ----------
+    M : ndarray
+        Adjacency matrix of the graph
+
+    Returns
+    -------
+    set
+        A minimum spanning tree of the graph.
     '''
     # Initialization:
     n = len(M)

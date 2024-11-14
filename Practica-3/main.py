@@ -5,18 +5,18 @@ from times import test
 from cases import TestCase
 from algs import kruskal, prim
 from charts import create_table
-from representations import to_adjacency_matrix
+
 
 # Test and size variables:
 TEST_CASES = [
             TestCase(V={0,1,2,3}, 
-                    E={(0,2,9), (3,2,2), (0,3,6), (1,2,4), (0,1,5), (1,3,3)},
-                    output={(3,2,2), (0,1,5), (1,3,3)}
+                     E={(0,2,9), (3,2,2), (0,3,6), (1,2,4), (0,1,5), (1,3,3)},
+                     output={(3,2,2), (0,1,5), (1,3,3)}
                 ),
 
             TestCase(V={0,1,2,3,4},
-                    E={(3,4,6), (1,2,1), (0,2,9), (1,4,7), (0,3,4), (3,1,2), (2,3,3), (2,4,9), (0,4,8), (0,1,5)},
-                    output={(3,4,6), (1,2,1), (0,3,4), (3,1,2)}
+                     E={(3,4,6), (1,2,1), (0,2,9), (1,4,7), (0,3,4), (3,1,2), (2,3,3), (2,4,9), (0,4,8), (0,1,5)},
+                     output={(3,4,6), (1,2,1), (0,3,4), (3,1,2)}
                 )
 ]
 
@@ -28,7 +28,8 @@ def main() -> None:
     '''
     Description
     -----------
-    Main function that tests the test cases and then evaluates the times for different sized vectors.
+    Main function that initializes the test cases and then evaluates the times for
+    different sized vectors and prints a table with the results.
 
     Returns
     -------

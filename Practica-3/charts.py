@@ -5,29 +5,31 @@ from algs import kruskal, prim
 
 
 # Table creation function:
-def create_table(sizes:list, couts:list, cout_names:list, alg=kruskal) -> PrettyTable:
+def create_table(sizes:list, couts, cout_names:list, alg=kruskal) -> PrettyTable:
     '''
     Description
     -----------
     Create a table with the columns "Size" (sample size), "Averaged"
-    (indicates if the time was averaged), "Time" (execution time) and
-    the corresponding cout labels.
+    (indicates if the time had to be averaged), "Time" (execution time)
+    plus the corresponding cout labels.
 
     Parameters
     ----------
     sizes : list
         List with sample sizes.
-    couts : list
-        List of lambda functions that will represent a certain cout and
-        will be evaluated with each of the size n cases.
+    couts : function
+        Lambda function that will output a tuple with the three necessary couts
+        for a certain algorithm (inferior, adjusted and superior) and will be
+        evaluated on each of the size n cases. For example:
+        >>> first_set_of_couts = lambda n: (log(n), n, n**2)
     cout_names : list
-        List of labels for each of the couts. 
+        List of string labels corresponding to each of the couts. 
     alg : function
-        Function of the algorithm to be evaluated. 
+        Function of the algorithm to be evaluated.
 
     Returns
     -------
-    table : PrettyTable
+    PrettyTable
         Table with the result of the algorithm evaluated on each of the samplesizes.
     '''
     table = PrettyTable()

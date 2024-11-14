@@ -1,24 +1,24 @@
 import numpy as np
 
 
-#Converting functions:
+#Tuple-Matrix converting functions:
 def to_adjacency_matrix(V:set, E:set) -> np.ndarray:
     '''
     Description
     -----------
-    Transforms 2 sets into a matrix.
-    
+    Transforms a set of vertices and a set of edges of a graph into a matrix.
+
     Parameters
     ----------
     V : set
-        Set of integer numbers that identifies the vertices of a graph.
-    E: set
-        Set of tuples with 2 vertex identifiers and the weight of the edge that joins them. 
-        
+        Set of ints that represents the vertices of a graph.
+    E : set
+        Set of tuples with 2 vertex identifiers and the weight of the edge that joins them.
+
     Returns
     -------
     np.ndarray
-        Adjacency matrix with the weights of the graph with vertices V and edges E. 
+        Adjacency matrix with the weights of the graph with vertices V and edges E.
     '''
     M = np.zeros((len(V), len(V)), dtype=int)
     
@@ -28,23 +28,22 @@ def to_adjacency_matrix(V:set, E:set) -> np.ndarray:
     
     return M
 
-
-def to_vertices_and_edges(M:np.ndarray) -> tuple[set,set]:
+def to_vertices_and_edges(M:np.ndarray) -> tuple:
     '''
     Description
     -----------
     Transforms a matrix into a tuple of 2 sets.
-    
+
     Parameters
     ----------
     M : np.ndarray
         Adjacency matrix with the weights of the edges of the graph.
-        
+
     Returns
     -------
-    tuple(set,set)
-        Tuple with 2 sets: V(set of integer numbers that identifies the vertices of a graph) and 
-        E(set of tuples with 2 vertex identifiers and the weight of the edge that joins them). 
+    tuple
+        Graph tuple with 2 sets: V (set of ints that represents the vertices of the graph) and 
+        E (set of edges (tuples) of the graph with each weigth). 
     '''
     rows, cols = M.shape
     V = set()
@@ -60,29 +59,29 @@ def to_vertices_and_edges(M:np.ndarray) -> tuple[set,set]:
 
 
 #Graph creating function:
-def create_graph(n:int, max_distance=50, adjacency_matrix=False) -> np.ndarray|tuple[set,set]:
+def create_graph(n:int, max_distance=50, adjacency_matrix=False) -> np.ndarray|tuple:
     '''
     Description
     -----------
     Creates a graph.
-    
+
     Parameters
     ----------
     n : int
         Number of vertices of the graph.
-    max_distance: int
+    max_distance : int
         Maximum value that an element of the adjacency matrix can have.
-    adjacency_matrix: bool
+    adjacency_matrix : bool
         Indicates whether the graph is returned in the form of a hue or a tuple.
-        
+
     Returns
     -------
     np.ndarray
         Adjacency matrix with the weights of the graph with vertices V and edges E.
-    
+
     or
-    
-    tuple(set,set)
+
+    tuple
         Tuple with 2 sets: V (set of integer numbers that identifies the vertices of a graph) and 
         E (set of tuples with 2 vertex identifiers and the weight of the edge that joins them).
     '''
