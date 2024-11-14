@@ -38,14 +38,14 @@ def main() -> None:
     test(TEST_CASES, kruskal)
     test(TEST_CASES, prim)
 
-    kruskal_couts = lambda n: (n, log(n)*n**2, n**2)
+    kruskal_couts = lambda n: (n, log(n)*n**2, n**2.5)
     prim_couts = lambda n: (n*log(n), n**2, n**2.5)
 
-    kruskal_cout_names = ['O(n)', 'O(n²log(n))', 'O(n²)']
+    kruskal_cout_names = ['O(n)', 'O(n²log(n))', 'O(n²·⁵)']
     prim_cout_names = ['O(nlog(n))', 'O(n²)', 'O(n²·⁵)']
 
-    print(create_table(SIZES, kruskal_couts, kruskal_cout_names, kruskal))
-    print(create_table(SIZES, prim_couts, prim_cout_names, prim))
+    print(f'\tKRUSKAL:\n\n{create_table(SIZES, kruskal_couts, kruskal_cout_names, kruskal)}')
+    print(f'\tPRIM:\n\n{create_table(SIZES, prim_couts, prim_cout_names, prim)}')
 
 
 if __name__ == '__main__':
