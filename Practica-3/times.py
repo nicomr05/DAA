@@ -71,7 +71,10 @@ def measure_time(n:int, adjacency:bool, alg=kruskal) -> tuple[float,bool]:
     Parameters
     ----------
     n : int
-        Tamaño del vector que se va a utilizar para medir el tiempo.
+        Size of the sample that is going to be generated.
+    adjacency : bool
+        Value that indicates if the entry for the algorithm must be an adjacency
+        matrix or a tuple.
     alg: function
         Function of the algorithm to be evaluated.
 
