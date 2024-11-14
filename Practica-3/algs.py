@@ -1,7 +1,9 @@
 from numpy import ndarray
 
 # Auxiliary functions:
-def _find (u:int, S:list) -> int: 
+def _find (u:int, S:list) -> int:
+    '''
+    '''
     u_S = S[u]
 
     while u_S != S[u_S]:
@@ -10,6 +12,8 @@ def _find (u:int, S:list) -> int:
     return u_S
 
 def _merge (u:int, v_S:int, S:list) -> None:
+    '''
+    '''
     u_S = S[u]
 
     while u_S != S[u_S]:
@@ -21,23 +25,23 @@ def _merge (u:int, v_S:int, S:list) -> None:
 
 
 # Graph Algorithms:
-def kruskal(V:set[int], E:set[tuple]) -> set:
+def kruskal(graph_tuple:tuple) -> set:
     '''
     '''
+    V, E = graph_tuple
     E_list = sorted(E, key=lambda t: t[2])
     T = set()
     S = [i for i in V]
 
     idx = 0
     while len(T) < (len(V) - 1):
-        a:tuple = E_list[idx]      # select the tuple (u,v,w) that has not been yet analized and that minimizes w;
-        u_S = _find(a[0], S)    # "find" is a function that finds the set of S where u is
+        a:tuple = E_list[idx]       # select the tuple (u,v,w) that has not been yet analized and that minimizes w;
+        u_S = _find(a[0], S)        # "find" is a function that finds the set of S where u is
         v_S = _find(a[1], S)
 
         if u_S != v_S:
             _merge(a[1], u_S, S)
             T.add(a)
-
         idx += 1
 
     return T

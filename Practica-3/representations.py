@@ -47,14 +47,14 @@ def to_vertices_and_edges(M:np.ndarray) -> tuple[set,set]:
         E(set of tuples with 2 vertex identifiers and the weight of the edge that joins them). 
     '''
     rows, cols = M.shape
-    E = set([])
-    V = set([])
+    V = set()
+    E = set()
     
     for i in range(rows):
         V.add(i)
     
-    for j in range(i+1, cols):
-        E.add((i,j,M[i][j]))
+        for j in range(i+1, cols):
+            E.add((i,j,M[i][j]))
     
     return (V,E)
 

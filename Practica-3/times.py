@@ -30,7 +30,7 @@ def test(cases:list[TestCase], alg=kruskal) -> str|AssertionError:
     for case in cases:
         if alg == kruskal:
             graph = (case.V, case.E)
-            sol = alg(*graph)
+            sol = alg(graph)
 
         elif alg == prim:
             graph = case.AdMatrix
@@ -64,7 +64,7 @@ def measure_time(n:int, adjacency:bool, alg=kruskal) -> tuple[float,bool]:
     '''
     Description
     -----------
-    It measures the execution time of an algorithm.
+    Measures the execution time of an algorithm and averages the te.
     
     Parameters
     ----------
@@ -83,6 +83,7 @@ def measure_time(n:int, adjacency:bool, alg=kruskal) -> tuple[float,bool]:
         very small execution.
     '''
     graph = create_graph(n, adjacency_matrix=adjacency)
+
     ta = time_ns()
     alg(graph)
     tb = time_ns()
@@ -96,15 +97,15 @@ def measure_time(n:int, adjacency:bool, alg=kruskal) -> tuple[float,bool]:
 
         ta = time_ns()
         for _ in range(K):
-            vector = create_graph(n, adjacency_matrix=adjacency)
-            alg(vector)
+            graph = create_graph(n, adjacency_matrix=adjacency)
+            alg(graph)
 
         tb = time_ns()
         t1 = tb - ta
 
         ta = time_ns()
         for _ in range(K):
-            vector = create_graph(n, adjacency_matrix=adjacency)
+            graph = create_graph(n, adjacency_matrix=adjacency)
 
         tb = time_ns()
         t2 = tb - ta
