@@ -44,8 +44,8 @@ def main() -> None:
     kruskal_cout_names = ['O(n)', 'O(n²log(n))', 'O(n²·⁵)']
     prim_cout_names = ['O(nlog(n))', 'O(n²)', 'O(n²·⁵)']
 
-    print(f'\tKRUSKAL:\n\n{create_table(SIZES, kruskal_couts, kruskal_cout_names, kruskal)}')
-    print(f'\tPRIM:\n\n{create_table(SIZES, prim_couts, prim_cout_names, prim)}')
+    print(f'\n\tKRUSKAL:\n\n{create_table(SIZES, kruskal_couts, kruskal_cout_names, kruskal)}\n')
+    print(f'\n\tPRIM:\n\n{create_table(SIZES, prim_couts, prim_cout_names, prim)}\n')
 
 
 if __name__ == '__main__':
