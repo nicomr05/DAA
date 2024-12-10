@@ -1,4 +1,3 @@
-
 # Test case class:
 class TestCase:
     '''
@@ -39,18 +38,18 @@ class TestCase:
         -------
         None
         '''
-        self._A = A
-        self._B = B
-        self._C = C
+        self.__A = A
+        self.__B = B
+        self.__C = C
     
     @property
     def A(self) -> str|list:
-        return self._A
+        return self.__A
 
     @property
     def B(self) -> str|list:
-        return self._B
+        return self.__B
 
     @property
     def C(self) -> str|list:
-        return self._C
+        return self.__C
