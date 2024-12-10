@@ -1,5 +1,5 @@
 # Mixture algorithms
-def isMixtureDP (A:str|list, B:str|list, C:str|list)->bool:
+def MixtureDP (A:str|list, B:str|list, C:str|list)->bool:
     n = len(A)
     m = len(B)
     s = len(C)
