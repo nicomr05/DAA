@@ -1,9 +1,22 @@
-def isMisxtureDP(A:str|list, B:str|list, C:str|list) -> list[list]:
+def isMixtureDP (A:str|list, B:str|list, C:str|list)->bool:
     n = len(A)
     m = len(B)
     s = len(C)
-
-    t = [[False for j in range(m + 1)] for i in range(n + 1)]
+    if (n + m) != s:
+        return False
+    t=[[False for i in range(m+1)] for j in range(n+1)] 
+    t[0][0] = True
+    for i in range(n+1):
+        for j in range(m+1):
+            t[i][j] = t[max(0,i-1)][j] or t[i][max(0,j-1)]
+            if t[i][j] and (i<n or j<m):
+                k = i+j
+                t[i][j] = False
+                if i <n:
+                    t[i][j] = (t[i][j] or (A[i] == C[k]))
+                if j <m:
+                    t[i][j] = t[i][j] or B[j] == C[k]
+    return t[n][m]
 
 
 def isMixtureCX(A:str|list, B:str|list, C:str|list) -> None: 
