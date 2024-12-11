@@ -1,9 +1,9 @@
 from time import time
-from algs import MisxtureDP
+from algs import MixtureDP
 from words import create_word
 
 # Testing function:
-def test(cases:list, alg=MisxtureDP) -> str|AssertionError:
+def test(cases:list, alg=MixtureDP) -> str|AssertionError:
     '''
     Description
     -----------
@@ -27,7 +27,7 @@ def test(cases:list, alg=MisxtureDP) -> str|AssertionError:
         Error with its associated message indicating that the tests failed to match the expected output.
     '''
     for case in cases:
-        sol = alg(case.input)
+        sol = alg(case.A, case.B, case.C)
         
         assert case.output == sol, f'List {case.input}. Expected output {case.output}, but got {sol}.'
     
@@ -48,7 +48,7 @@ def time_ns() -> float:
     '''
     return time() * (10**9)
 
-def measure_time(n:int, alphabet:tuple, alg=MisxtureDP) -> tuple[float,bool]:
+def measure_time(n:int, alphabet:tuple, alg=MixtureDP) -> tuple[float,bool]:
     '''
     Description
     -----------

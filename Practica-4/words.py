@@ -33,8 +33,9 @@ def mix_words(a, b, valid=True):
     if not valid:
         np.random.shuffle(a_array)
         np.random.shuffle(b_array)
-        a_index = 0
-        b_index = 0
+
+    a_index = 0
+    b_index = 0
 
     while len(new_word) < len(a) + len(b):
         p = np.random.randint(2)

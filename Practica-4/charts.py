@@ -1,11 +1,11 @@
 from prettytable import PrettyTable
 
 from times import measure_time
-from algs import MisxtureDP
+from algs import MixtureDP
 
 
 # Table creation function:
-def create_table(sizes:list, alphabet:tuple, couts, cout_names:list, alg=MisxtureDP) -> PrettyTable:
+def create_table(sizes:list, alphabet:tuple, couts, cout_names:list, alg=MixtureDP) -> PrettyTable:
     '''
     Description
     -----------

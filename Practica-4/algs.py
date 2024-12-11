@@ -4,10 +4,12 @@ def MixtureDP (A:str|list, B:str|list, C:str|list)->bool:
     m = len(B)
     s = len(C)
 
+    sol = ""
+
     if (n + m) != s:
         return False
 
-    t=[[False for i in range(m+1)] for j in range(n+1)] 
+    t = [[False for _ in range(m+1) ] for _ in range(n+1) ]
     t[0][0] = True
 
     for i in range(n + 1):
@@ -16,20 +18,28 @@ def MixtureDP (A:str|list, B:str|list, C:str|list)->bool:
             if t[i][j] and (i < n or j < m):
                 k = i + j
                 t[i][j] = False
-                
+
                 if i < n:
-                    t[i][j] = (t[i][j] or (A[i] == C[k]))
-                
+                    cond = A[i] == C[k]
+                    t[i][j] = t[i][j] or cond
+                    if cond:
+                        sol += "A"
+
                 if j < m:
-                    t[i][j] = t[i][j] or B[j] == C[k]
+                    cond = B[j] == C[k]
+                    t[i][j] = t[i][j] or cond
+                    if cond:
+                        sol += "B"
 
-    return t[n][m]
+    return sol
 
 
-def MixtureCX(A, B, C) -> bool: 
+def MixtureCX(A:str|list, B:str|list, C:str|list) -> bool: 
     n = len(A)
     m = len(B)
     s = len(C)
+
+    sol = ""
 
     if n + m != s:
         return False
@@ -38,20 +48,21 @@ def MixtureCX(A, B, C) -> bool:
     Trial = [(0,0)] # Stack
 
     while len(Trial) > 0:
-        (i,j) = Trial[-1]
-        Trial.pop(-1)
-        k = i+j - 1
+        (i,j) = Trial.pop()
+        k = i + j
 
-        if k > s:
-            return True
+        if k >= s:
+            return sol
 
-        if i <= n and A[i] == C[k] and (i+1,j) not in Known:
-            Trial = Trial.append((i+1,j));
-            Known = Known.add((i+1,j));
+        if i < n and A[i] == C[k] and (i+1,j) not in Known:
+            sol += "A"
+            Trial.append((i+1,j))
+            Known.add((i+1,j))
 
-        if j <= m and B[j] == C[k] and (i,j+1) not in Known:
-            Trial = Trial.append((i,j+1));
-            Known = Known.add((i,j+1));
+        if j < m and B[j] == C[k] and (i,j+1) not in Known:
+            sol += "B"
+            Trial.append((i,j+1))
+            Known.add((i,j+1))
 
     return False
 
@@ -59,6 +70,7 @@ def MixtureCX(A, B, C) -> bool:
 if __name__ == "__main__":
     a = "Hello"
     b = "World"
-    c = "HelloWorld"
+    c = "WorHellold"
 
     print(MixtureCX(a,b,c))
+    print(MixtureDP(a,b,c))
