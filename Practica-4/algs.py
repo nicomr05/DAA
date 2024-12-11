@@ -26,7 +26,16 @@ def MixtureDP (A:str|list, B:str|list, C:str|list)->bool:
                     t[i][j] = t[i][j] or B[j] == C[k]
 
     # TODO : Recorrer tabla hacia atrás desde el final
-
+    for i in range(n,1,-1):
+        for j in range(m,-1,-1):
+            if t[i][j] :
+                if B[j-1]==C[i+j-1]:
+                    sol+="B"
+                    continue
+                if A[i-1]==C[i+j-1] :
+                    sol+="A"
+                    
+                
     return sol
 
 
@@ -66,7 +75,7 @@ def MixtureCX(A:str|list, B:str|list, C:str|list) -> bool:
 if __name__ == "__main__":
     a = "Hello"
     b = "World"
-    c = "HWorellldo"
+    c = "HelloWorld"
 
     print(MixtureCX(a,b,c))
     print(MixtureDP(a,b,c))
