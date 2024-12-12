@@ -1,9 +1,13 @@
+#!env/bin/python
+
+from cases import TestCase
 from time import time
 from algs import MixtureDP
 from words import create_word
 
+
 # Testing function:
-def test(cases:list, alg=MixtureDP) -> str|AssertionError:
+def test(cases:list[TestCase], alg=MixtureDP) -> str|AssertionError:
     '''
     Description
     -----------
@@ -11,25 +15,25 @@ def test(cases:list, alg=MixtureDP) -> str|AssertionError:
 
     Parameters
     ----------
-    cases : list
+    cases : `list`
         List of TestCase objects to be checked.
-    alg: fuction
+    alg: `function`
         Function of the algorithm to be evaluated. 
 
     Returns
     -------
-    str
+    `str`
         A string that confirms that the execution is successful, in case you want to print it.
 
     or
 
-    AssertionError
+    `AssertionError`
         Error with its associated message indicating that the tests failed to match the expected output.
     '''
     for case in cases:
         sol = alg(case.A, case.B, case.C)
         
-        assert case.output == sol, f'List {case.input}. Expected output {case.output}, but got {sol}.'
+        assert case.output == sol, f'Sample {case.A, case.B}. Expected output {case.output}, but got {sol}.'
     
     return 'Correct output.'
 
@@ -43,7 +47,7 @@ def time_ns() -> float:
 
     Returns
     -------
-    float
+    `float`
         System time in ns.
     '''
     return time() * (10**9)
@@ -57,17 +61,16 @@ def measure_time(n:int, alphabet:tuple, alg=MixtureDP) -> tuple[float,bool]:
 
     Parameters
     ----------
-    n : int
+    n : `int`
         Size of the sample that is going to be generated.
-    adjacency : bool
-        Value that indicates if the entry for the algorithm must be an adjacency
-        matrix or a tuple.
-    alg: function
+    alphabet : `tuple`
+        Tuple of characters that can be used in the new random words.
+    alg: `function`
         Function of the algorithm to be evaluated.
 
     Returns
     -------
-    tuple
+    `tuple`
         Tuple containing the runtime that has been measured and a boolean value
         which indicates whether the response had to be averaged due to a small
         execution time.

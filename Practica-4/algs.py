@@ -1,5 +1,28 @@
+#!env/bin/python
+
+
 # Mixture algorithms
 def MixtureDP (A:str|list, B:str|list, C:str|list)->bool:
+    '''
+    Description
+    -----------
+    Outputs a valid solution for mixing the strings A and B such that it forms
+    a string C given via a Dynamic Programming algorithm.
+
+    Parameters
+    ----------
+    A : `str|list`
+        First string to mix.
+    B : `str|list`
+        Second string to mix.
+    C : `str|list`
+        Mixed string.
+    
+    Returns
+    -------
+    str
+        String formed by As or Bs depending of which string it belonged to.
+    '''
     n = len(A)
     m = len(B)
     s = len(C)
@@ -26,20 +49,41 @@ def MixtureDP (A:str|list, B:str|list, C:str|list)->bool:
                     t[i][j] = t[i][j] or B[j] == C[k]
 
     # TODO : Recorrer tabla hacia atrás desde el final
-    for i in range(n,1,-1):
-        for j in range(m,-1,-1):
-            if t[i][j] :
-                if B[j-1]==C[i+j-1]:
-                    sol+="B"
-                    continue
-                if A[i-1]==C[i+j-1] :
-                    sol+="A"
+
+    for i in range(n, 0, -1):
+        for j in range(m, 0, -1):
+            if t[i][j]:
+                if B[j-1] == C[i+j -1]:
+                    sol += "B"
+                
+                if A[i-1] == C[i+j -1]:
+                    sol += "A"
                     
                 
-    return sol
+    return sol[::-1]
 
 
-def MixtureCX(A:str|list, B:str|list, C:str|list) -> bool: 
+def MixtureCX(A:str|list, B:str|list, C:str|list) -> bool:
+    '''
+    Description
+    -----------
+    Outputs a valid solution for mixing the strings A and B such that it forms
+    a string C given via another algorithm.
+
+    Parameters
+    ----------
+    A : `str|list`
+        First string to mix.
+    B : `str|list`
+        Second string to mix.
+    C : `str|list`
+        Mixed string.
+    
+    Returns
+    -------
+    str
+        String formed by As or Bs depending of which string it belonged to.
+    '''
     n = len(A)
     m = len(B)
     s = len(C)
@@ -75,7 +119,7 @@ def MixtureCX(A:str|list, B:str|list, C:str|list) -> bool:
 if __name__ == "__main__":
     a = "Hello"
     b = "World"
-    c = "HelloWorld"
+    c = "WorldHello"
 
-    print(MixtureCX(a,b,c))
     print(MixtureDP(a,b,c))
+    print(MixtureCX(a,b,c))

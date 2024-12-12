@@ -1,3 +1,5 @@
+#!env/bin/python
+
 from prettytable import PrettyTable
 
 from times import measure_time
@@ -15,16 +17,16 @@ def create_table(sizes:list, alphabet:tuple, couts, cout_names:list, alg=Mixture
 
     Parameters
     ----------
-    sizes : list
+    sizes : `list`
         List with sample sizes.
-    couts : function
+    couts : `function`
         Lambda function that will output a tuple with the three necessary couts
         for a certain algorithm (inferior, adjusted and superior) and will be
         evaluated on each of the size n cases. For example:
         >>> first_set_of_couts = lambda n: (log(n), n, n**2)
-    cout_names : list
+    cout_names : `list`
         List of string labels corresponding to each of the couts. 
-    alg : function
+    alg : `function`
         Function of the algorithm to be evaluated.
 
     Returns

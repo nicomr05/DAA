@@ -1,3 +1,5 @@
+#!env/bin/python
+
 from math import log
 
 from charts import create_table
@@ -5,15 +7,17 @@ from cases import TestCase
 from times import test
 from algs import MixtureDP, MixtureCX
 
+# Test and size global variables
 TEST_CASES = [
-    TestCase(A="Hello", B="World", C="HelloWorld"),
-    TestCase(A="Hello", B="World", C="WorldHello"),
-    TestCase(A="Hello", B="World", C="HWeolrllod")
+    TestCase(A="Hello", B="World", C="HelloWorld", output="AAAAABBBBB"),
+    TestCase(A="Hello", B="World", C="WorldHello", output="BBBBBAAAAA"),
+    TestCase(A="Hello", B="World", C="HWeolrllod", output="ABABABABAB")
 ]
 
 SIZES = [10*2**x for x in range(1,9)]
 
 
+# Main function
 def main() -> None:
     '''
     Description
@@ -23,7 +27,7 @@ def main() -> None:
 
     Returns
     -------
-    None
+    `None`
     '''
     test(TEST_CASES, alg=MixtureDP)
     test(TEST_CASES, alg=MixtureCX)
