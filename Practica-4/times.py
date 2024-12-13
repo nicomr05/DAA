@@ -29,7 +29,7 @@ def sampler(n:int, alphabet:tuple) -> str:
         alphabet = [chr(i) for i in range(n)]
 
     A, B = create_word(n, alphabet), create_word(n, alphabet)
-    
+
     return A, B
 
 
@@ -111,7 +111,7 @@ def measure_time(n:int, alphabet:tuple, alg=MixtureDP) -> tuple[float,bool]:
     t = tb - ta
     avg = False
 
-    threshold = 5*(10**5)    # Confidence threshold 
+    threshold = 6*(10**5)    # Confidence threshold 
     
     if t < threshold:
         K = 1000

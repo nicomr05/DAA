@@ -1,7 +1,7 @@
 #!env/bin/python
 
 
-# Auxiliary functions
+# Backtracking function
 def Backtrack(T:list[list]) -> str:
     '''
     Description
@@ -26,11 +26,11 @@ def Backtrack(T:list[list]) -> str:
 
     while i > 0 or j > 0:
 
-        if T[i-1][j]:
+        if T[i-1][j] and i > 0:
             sol += "A"
             i -= 1
 
-        if T[i][j-1]:
+        if T[i][j-1] and j > 0:
             sol += "B"
             j -= 1
 
@@ -116,7 +116,7 @@ def MixtureCX(A:str|list, B:str|list, C:str|list) -> bool:
     
     Known = {(0,0)} # Set
     Trial = [(0,0)] # Stack
-    Hist  = [] # History stack
+    Sol = ""
 
     while len(Trial) > 0:
         AddedA = False
@@ -124,22 +124,19 @@ def MixtureCX(A:str|list, B:str|list, C:str|list) -> bool:
         k = i + j
 
         if k == s:
-            s = ""
-            for l in Hist:
-                s += l
-            return s
+            return Sol
 
 
         if i < n and A[i] == C[k] and (i+1, j) not in Known:
-            Hist.append("A")
             Trial.append((i+1, j))
             Known.add((i+1, j))
+            Sol += "A"
             AddedA = True
 
         if j < m and B[j] == C[k] and (i, j+1) not in Known and not AddedA:
-            Hist.append("B")
             Trial.append((i, j+1))
             Known.add((i, j+1))
+            Sol += "B"
 
     else:
         return False
