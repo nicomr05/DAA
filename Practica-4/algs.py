@@ -1,7 +1,7 @@
 #!env/bin/python
 
 
-# Table backtracking function
+# Auxiliary functions
 def Backtrack(T:list[list]) -> str:
     '''
     Description
@@ -16,7 +16,7 @@ def Backtrack(T:list[list]) -> str:
     Returns
     -------
     `str`
-        Valid path inside the table 
+        Valid path inside the table.
     '''
     n = len(T)
     m = len(T[0])
@@ -110,30 +110,33 @@ def MixtureCX(A:str|list, B:str|list, C:str|list) -> bool:
     m = len(B)
     s = len(C)
 
-    sol = ""
-
     if n + m != s:
         return False
     
     Known = {(0,0)} # Set
     Trial = [(0,0)] # Stack
+    Hist  = [] # History stack
 
     while len(Trial) > 0:
+        AddedA = False
         (i,j) = Trial.pop()
         k = i + j
 
         if k == s:
-            for tup in Trial: # TODO : Recopilar y devolver solución CX
-                print(tup)
-
-            return sol
+            s = ""
+            for l in Hist:
+                s += l
+            return s
 
 
         if i < n and A[i] == C[k] and (i+1, j) not in Known:
+            Hist.append("A")
             Trial.append((i+1, j))
             Known.add((i+1, j))
+            AddedA = True
 
-        if j < m and B[j] == C[k] and (i, j+1) not in Known:
+        if j < m and B[j] == C[k] and (i, j+1) not in Known and not AddedA:
+            Hist.append("B")
             Trial.append((i, j+1))
             Known.add((i, j+1))
 
@@ -145,7 +148,7 @@ def MixtureCX(A:str|list, B:str|list, C:str|list) -> bool:
 if __name__ == "__main__":
     a = "Hello"
     b = "World"
-    c = "WHorldello"
+    c = "HWeolrllod"
 
     print(MixtureDP(a,b,c))
     print(MixtureCX(a,b,c))

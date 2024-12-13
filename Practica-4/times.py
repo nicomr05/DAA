@@ -3,7 +3,7 @@
 from cases import TestCase
 from time import time
 from algs import MixtureDP
-from words import create_word
+from words import create_word, mix_words
 
 
 # Testing function:
@@ -75,10 +75,11 @@ def measure_time(n:int, alphabet:tuple, alg=MixtureDP) -> tuple[float,bool]:
         which indicates whether the response had to be averaged due to a small
         execution time.
     '''
-    sample = create_word(n, alphabet)
+    A, B = create_word(n, alphabet), create_word(n, alphabet)
+    C = mix_words(A, B, valid=True)
 
     ta = time_ns()
-    alg(sample)
+    alg(A,B,C)
     tb = time_ns()
     t = tb - ta
     avg = False
@@ -90,15 +91,17 @@ def measure_time(n:int, alphabet:tuple, alg=MixtureDP) -> tuple[float,bool]:
 
         ta = time_ns()
         for _ in range(K):
-            sample = create_word(n, alphabet)
-            alg(sample)
+            A, B = create_word(n, alphabet), create_word(n, alphabet)
+            C = mix_words(A, B, valid=True)
+            alg(A,B,C)
 
         tb = time_ns()
         t1 = tb - ta
 
         ta = time_ns()
         for _ in range(K):
-            sample = create_word(n, alphabet)
+            A, B = create_word(n, alphabet), create_word(n, alphabet)
+            C = mix_words(A, B, valid=True)
 
         tb = time_ns()
         t2 = tb - ta
