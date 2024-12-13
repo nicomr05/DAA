@@ -39,17 +39,23 @@ def main() -> None:
     dp_couts = lambda n: ( n*log(n), n**2, n**2.2 )
     cx_couts = lambda n: ( n, n*log(n), n**2 )
 
-    alphabets = [ (0,1), tuple([i for i in range(256)]) ]
+    alphabet_names = ["BINARY", "ASCII", "AB-LENGTH"]
+    alphabets = [
+        (0,1),
+        tuple([chr(i) for i in range(256)]),
+        "AB-LENGTH"
+        ]
 
-    print("\nDYNAMIC PROGRAMING")
-    for alphabet in alphabets:
-        print(f"\n\tALPHABET : {alphabet}")
-        print(create_table(SIZES, alphabet=alphabet, alg=MixtureDP, couts=dp_couts, cout_names=dp_cout_names))
-    
-    print("\nCOMPLEX DP ALGORITHM")
-    for alphabet in alphabets:
-        print(f"\n\tALPHABET : {alphabet}")
-        print(create_table(SIZES, alphabet=alphabet, alg=MixtureCX, couts=cx_couts, cout_names=cx_cout_names))
+
+    print("\n\nDYNAMIC PROGRAMING")
+    for idx in range(len(alphabets)):
+        print(f"\n\tALPHABET : {alphabet_names[idx]}")
+        print(create_table(SIZES, alphabet=alphabets[idx], alg=MixtureDP, couts=dp_couts, cout_names=dp_cout_names))
+
+    print("\n\nCOMPLEX DP ALGORITHM")
+    for idx in range(len(alphabets)):
+        print(f"\n\tALPHABET : {alphabet_names[idx]}")
+        print(create_table(SIZES, alphabet=alphabets[idx], alg=MixtureCX, couts=cx_couts, cout_names=cx_cout_names))
 
 
 

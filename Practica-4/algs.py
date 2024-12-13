@@ -23,8 +23,9 @@ def Backtrack(T:list[list]) -> str:
 
     sol = ""
     i, j = n-1, m-1
-    
+
     while i > 0 or j > 0:
+
         if T[i-1][j]:
             sol += "A"
             i -= 1

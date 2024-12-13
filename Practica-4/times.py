@@ -6,6 +6,33 @@ from algs import MixtureDP
 from words import create_word, mix_words
 
 
+# Sample creating function
+def sampler(n:int, alphabet:tuple) -> str:
+    '''
+    Description
+    -----------
+    Sampling function that permits the 
+
+    Parameters
+    ----------
+    n : `int`
+        Size of the sample that is going to be generated.
+    alphabet : `tuple`
+        Tuple of characters that can be used in the new random words.
+
+    Returns
+    -------
+    `str`, `str`
+        Two random words (strings) to which to apply the algorithms.
+    '''
+    if alphabet == "AB-LENGTH":
+        alphabet = [chr(i) for i in range(n)]
+
+    A, B = create_word(n, alphabet), create_word(n, alphabet)
+    
+    return A, B
+
+
 # Testing function:
 def test(cases:list[TestCase], alg=MixtureDP) -> str|AssertionError:
     '''
@@ -75,7 +102,7 @@ def measure_time(n:int, alphabet:tuple, alg=MixtureDP) -> tuple[float,bool]:
         which indicates whether the response had to be averaged due to a small
         execution time.
     '''
-    A, B = create_word(n, alphabet), create_word(n, alphabet)
+    A, B = sampler(n, alphabet)
     C = mix_words(A, B, valid=True)
 
     ta = time_ns()
@@ -91,7 +118,7 @@ def measure_time(n:int, alphabet:tuple, alg=MixtureDP) -> tuple[float,bool]:
 
         ta = time_ns()
         for _ in range(K):
-            A, B = create_word(n, alphabet), create_word(n, alphabet)
+            A, B = sampler(n, alphabet)
             C = mix_words(A, B, valid=True)
             alg(A,B,C)
 
@@ -100,7 +127,7 @@ def measure_time(n:int, alphabet:tuple, alg=MixtureDP) -> tuple[float,bool]:
 
         ta = time_ns()
         for _ in range(K):
-            A, B = create_word(n, alphabet), create_word(n, alphabet)
+            A, B = sampler(n, alphabet)
             C = mix_words(A, B, valid=True)
 
         tb = time_ns()

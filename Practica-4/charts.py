@@ -40,7 +40,7 @@ def create_table(sizes:list, alphabet:tuple, couts, cout_names:list, alg=Mixture
     table.field_names = ['Size','Averaged','Time'] + cout_names
 
     for size in sizes:
-        time, flag = measure_time(size, alphabet=alphabet, alg=alg)
+        time, flag = measure_time(size, alphabet, alg=alg)
         inf, adj, sup = couts(size)
 
         rows.append([size, flag, time, f'{time/inf:.6f}', f'{time/adj:.6f}', f'{time/sup:.6f}'])
