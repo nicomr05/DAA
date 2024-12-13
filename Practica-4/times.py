@@ -32,8 +32,8 @@ def test(cases:list[TestCase], alg=MixtureDP) -> str|AssertionError:
     '''
     for case in cases:
         sol = alg(case.A, case.B, case.C)
-        
-        assert case.output == sol, f'Sample {case.A, case.B}. Expected output {case.output}, but got {sol}.'
+
+        assert case.output == sol, f'Sample {case.A} + {case.B} = {case.C}. Expected output {case.output}, but got {sol}.'
     
     return 'Correct output.'
 
