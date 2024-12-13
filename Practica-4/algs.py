@@ -1,8 +1,8 @@
 #!env/bin/python
 
 
-# Backtracking function
-def Backtrack(T:list[list], n:int, m:int) -> str:
+# Table backtracking function
+def Backtrack(T:list[list], to:int) -> str:
     '''
     Description
     -----------
@@ -12,31 +12,48 @@ def Backtrack(T:list[list], n:int, m:int) -> str:
     ----------
     T : `list[list]`
         Table in which to search.
-    n : `int`
-        Number of rows of T.
-    m : `int`
-        Number of columns of T.    
+    to : `int`
+        Maximum path search depth.
 
     Returns
     -------
     `str`
         Valid path inside the table 
     '''
-    idx, jdx = -1
-    while (idx, jdx) != (-n,-m): # TODO : Desbordamiento de la tabla por accesos a elementos fuera de ella
-        if T[idx - 1][jdx]:
-            idx += -1
-            sol += "A"
+    n = len(T)
+    m = len(T[0])
 
-        if T[idx][jdx - 1]:
-            jdx += -1
-            sol += "A"
+    sol = ""
+    visited = []
 
+    i, j = n-1, m-1
+    while i > 0 and j > 0:
+        print(visited)
+        if T[i-1][j]:
+            sol += "A"
+            i -= 1
+            visited.append((i,j))
+
+        if T[i][j-1]:
+            sol += "B"
+            j -= 1
+            visited.append((i,j))
+    print(visited)
+    '''
+    for i in range(len(T)-1, to, -1):
+        for j in range(len(T[0])-1, to, -1):
+
+            if T[i-1][j]:
+                sol += "A"
+
+            if T[i][j-1]:
+                sol += "B"
+    '''
     return sol
 
 
 # Mixture algorithms
-def MixtureDP (A:str|list, B:str|list, C:str|list)->bool:
+def MixtureDP (A:str|list, B:str|list, C:str|list) -> bool:
     '''
     Description
     -----------
@@ -61,8 +78,6 @@ def MixtureDP (A:str|list, B:str|list, C:str|list)->bool:
     m = len(B)
     s = len(C)
 
-    sol = ""
-
     if (n + m) != s:
         return False
 
@@ -71,6 +86,7 @@ def MixtureDP (A:str|list, B:str|list, C:str|list)->bool:
 
     for i in range(n + 1):
         for j in range(m + 1):
+
             T[i][j] = T[max(0, i-1)][j] or T[i][max(0, j-1)]
             if T[i][j] and (i < n or j < m):
                 k = i + j
@@ -81,8 +97,8 @@ def MixtureDP (A:str|list, B:str|list, C:str|list)->bool:
 
                 if j < m:
                     T[i][j] = T[i][j] or B[j] == C[k]
-
-    return Backtrack(T, n, m)
+    print(T)
+    return Backtrack(T, to=-1)
 
 
 def MixtureCX(A:str|list, B:str|list, C:str|list) -> bool:
@@ -110,7 +126,7 @@ def MixtureCX(A:str|list, B:str|list, C:str|list) -> bool:
     m = len(B)
     s = len(C)
 
-    T = [[False for _ in range(m+1) ] for _ in range(n+1) ]
+    sol = ""
 
     if n + m != s:
         return False
@@ -123,7 +139,15 @@ def MixtureCX(A:str|list, B:str|list, C:str|list) -> bool:
         k = i + j
 
         if k == s:
-            return Backtrack(T, n, m) # Returns a valid path searching through the DP table 
+            for i in range(s):
+                if i < n and C[i] == A[i]:
+                    sol += "A"
+
+                if i < m and C[i] == B[i]:
+                    sol += "B"
+
+            return sol
+
 
         if i < n and A[i] == C[k] and (i+1, j) not in Known:
             Trial.append((i+1, j))
@@ -139,9 +163,9 @@ def MixtureCX(A:str|list, B:str|list, C:str|list) -> bool:
 
 
 if __name__ == "__main__":
-    a = "aa"
-    b = "aaa"
-    c = "aaaaa"
+    a = "Hello"
+    b = "World"
+    c = "WorldHello"
 
     print(MixtureDP(a,b,c))
     print(MixtureCX(a,b,c))

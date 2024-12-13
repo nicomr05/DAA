@@ -1,7 +1,5 @@
 #!env/bin/python
 
-from words import mix_words
-
 
 # Test case class:
 class TestCase:
