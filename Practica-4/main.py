@@ -36,8 +36,8 @@ def main() -> None:
     dp_cout_names = ['O(nlog(n))', 'O(n²)', 'O(n²·²)']
     cx_cout_names = ['O(√n)', 'O(n)', 'O(nlog(n))']
 
-    dp_couts = lambda n: ( n**0.5, n**2, n**2.2 )
-    cx_couts = lambda n: ( log(n), n, n*log(n) )
+    dp_couts = lambda n: ( n*log(n), n**2, n**2.2 )
+    cx_couts = lambda n: ( n**5, n, n*log(n) )
 
     alphabets = [ (0,1), tuple([i for i in range(256)]) ]
 
