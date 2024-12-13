@@ -39,3 +39,38 @@ def MixtureDP (A:str|list, B:str|list, C:str|list)->bool:
                     
 
     return sol
+for i in range(s):
+    cnt1=0
+    cnt2=0
+    for j in range(cnt1,n):
+        if A[j] == C[i]:
+            sol += "A"
+        if cnt1>=n:
+            break
+        else:
+            cnt1+=1   
+    if  A[j] == C[i]:
+        break
+        
+    for k in range(cnt2,m):      
+        if B[k] == C[i]:
+            sol += "B"
+            break
+        cnt2+=1
+        
+for i in range(s):
+    if i<n:
+        j=i
+    else:
+        j=i-n
+    if C[i]==A[j]:
+        if j==i:
+            sol+="A"
+        if j==i-n:
+            if A[j] != C[i-n]:
+                sol+="A"
+            else:
+                sol+="B"
+        
+    if C[i]==B[j]and C[i]!=A[j]:
+        sol+="B"

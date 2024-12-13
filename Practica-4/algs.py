@@ -49,18 +49,22 @@ def MixtureDP (A:str|list, B:str|list, C:str|list)->bool:
                     t[i][j] = t[i][j] or B[j] == C[k]
 
     # TODO : Recorrer tabla hacia atrás desde el final
-
-    for i in range(n, 0, -1):
-        for j in range(m, 0, -1):
-            if t[i][j]:
-                if B[j-1] == C[i+j -1]:
-                    sol += "B"
-                
-                if A[i-1] == C[i+j -1]:
-                    sol += "A"
-                    
-                
-    return sol[::-1]
+    if t[n][m]==False:
+        return False
+    else:
+        cnt=0
+        for i in range(s):
+            if cnt<n:
+                if C[i]==A[cnt]:
+                    sol+="A"
+                    cnt+=1 
+                else:
+                    sol+="B"      
+            else:
+                if len(sol)<s:
+                    for i in range(s-len(sol)):
+                        sol+="B"
+        return sol
 
 
 def MixtureCX(A:str|list, B:str|list, C:str|list) -> bool:
@@ -101,25 +105,35 @@ def MixtureCX(A:str|list, B:str|list, C:str|list) -> bool:
         k = i + j
 
         if k >= s:
+            cnt=0
+            for i in range(s):
+                if cnt<n:
+                    if C[i]==A[cnt]:
+                        sol+="A"
+                        cnt+=1 
+                    else:
+                        sol+="B"      
+                else:
+                    if len(sol)<s:
+                        for i in range(s-len(sol)):
+                            sol+="B"
             return sol
-
+    
         if i < n and A[i] == C[k] and (i+1,j) not in Known:
-            sol += "A"
             Trial.append((i+1,j))
             Known.add((i+1,j))
 
         if j < m and B[j] == C[k] and (i,j+1) not in Known:
-            sol += "B"
             Trial.append((i,j+1))
             Known.add((i,j+1))
 
     return False
-
+    
 
 if __name__ == "__main__":
     a = "Hello"
     b = "World"
-    c = "WorldHello"
+    c = "WHorldello"
 
     print(MixtureDP(a,b,c))
     print(MixtureCX(a,b,c))
