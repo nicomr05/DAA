@@ -2,7 +2,7 @@
 
 
 # Table backtracking function
-def Backtrack(T:list[list], to:int) -> str:
+def Backtrack(T:list[list]) -> str:
     '''
     Description
     -----------
@@ -12,8 +12,6 @@ def Backtrack(T:list[list], to:int) -> str:
     ----------
     T : `list[list]`
         Table in which to search.
-    to : `int`
-        Maximum path search depth.
 
     Returns
     -------
@@ -84,7 +82,7 @@ def MixtureDP (A:str|list, B:str|list, C:str|list) -> bool:
                 if j < m:
                     T[i][j] = T[i][j] or B[j] == C[k]
 
-    return Backtrack(T, to=-1)
+    return Backtrack(T)
 
 
 def MixtureCX(A:str|list, B:str|list, C:str|list) -> bool:
