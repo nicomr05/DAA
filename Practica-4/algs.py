@@ -24,32 +24,18 @@ def Backtrack(T:list[list], to:int) -> str:
     m = len(T[0])
 
     sol = ""
-    visited = []
-
     i, j = n-1, m-1
-    while i > 0 and j > 0:
-        print(visited)
+    
+    while i > 0 or j > 0:
         if T[i-1][j]:
             sol += "A"
             i -= 1
-            visited.append((i,j))
 
         if T[i][j-1]:
             sol += "B"
             j -= 1
-            visited.append((i,j))
-    print(visited)
-    '''
-    for i in range(len(T)-1, to, -1):
-        for j in range(len(T[0])-1, to, -1):
 
-            if T[i-1][j]:
-                sol += "A"
-
-            if T[i][j-1]:
-                sol += "B"
-    '''
-    return sol
+    return sol[::-1]
 
 
 # Mixture algorithms
@@ -97,7 +83,7 @@ def MixtureDP (A:str|list, B:str|list, C:str|list) -> bool:
 
                 if j < m:
                     T[i][j] = T[i][j] or B[j] == C[k]
-    print(T)
+
     return Backtrack(T, to=-1)
 
 
@@ -139,12 +125,8 @@ def MixtureCX(A:str|list, B:str|list, C:str|list) -> bool:
         k = i + j
 
         if k == s:
-            for i in range(s):
-                if i < n and C[i] == A[i]:
-                    sol += "A"
-
-                if i < m and C[i] == B[i]:
-                    sol += "B"
+            for tup in Trial: # TODO : Recopilar y devolver solución CX
+                print(tup)
 
             return sol
 
