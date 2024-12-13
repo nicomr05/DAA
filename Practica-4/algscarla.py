@@ -1,40 +1,9 @@
-#!env/bin/python
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Dec 13 14:16:33 2024
 
-
-# Table backtracking function
-def Backtrack(T:list[list]) -> str:
-    '''
-    Description
-    -----------
-    Searches for a valid path inside a table `T`.
-
-    Parameters
-    ----------
-    T : `list[list]`
-        Table in which to search.
-
-    Returns
-    -------
-    `str`
-        Valid path inside the table 
-    '''
-    n = len(T)
-    m = len(T[0])
-
-    sol = ""
-    i, j = n-1, m-1
-    
-    while i > 0 or j > 0:
-        if T[i-1][j]:
-            sol += "A"
-            i -= 1
-
-        if T[i][j-1]:
-            sol += "B"
-            j -= 1
-
-    return sol[::-1]
-
+@author: 115548
+"""
 
 # Mixture algorithms
 def MixtureDP (A:str|list, B:str|list, C:str|list) -> bool:
