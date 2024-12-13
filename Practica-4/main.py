@@ -34,10 +34,10 @@ def main() -> None:
     test(TEST_CASES, alg=MixtureCX)
 
     dp_cout_names = ['O(nlog(n))', 'O(n²)', 'O(n²·²)']
-    cx_cout_names = ['O(√n)', 'O(n)', 'O(nlog(n))']
+    cx_cout_names = ['O(n)', 'O(nlog(n))', 'O(n²)']
 
     dp_couts = lambda n: ( n*log(n), n**2, n**2.2 )
-    cx_couts = lambda n: ( n**5, n, n*log(n) )
+    cx_couts = lambda n: ( n, n*log(n), n**2 )
 
     alphabets = [ (0,1), tuple([i for i in range(256)]) ]
 
