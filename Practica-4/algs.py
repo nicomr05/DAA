@@ -61,7 +61,7 @@ def MixtureDP (A:str|list, B:str|list, C:str|list) -> bool:
     n = len(A)
     m = len(B)
     s = len(C)
-    sol=""
+
     if (n + m) != s:
         return False
 
@@ -82,23 +82,7 @@ def MixtureDP (A:str|list, B:str|list, C:str|list) -> bool:
                 if j < m:
                     T[i][j] = T[i][j] or B[j] == C[k]
 
-    if T[n][m]==False:
-        return False
-    else:
-        cnt=0
-        for i in range(s):
-            if cnt<n:
-                if C[i]==A[cnt]:
-                    sol+="A"
-                    cnt+=1 
-                else:
-                    sol+="B"      
-            else:
-                if len(sol)<s:
-                    for i in range(s-len(sol)):
-                        sol+="B"
-        return sol
-    
+    return Backtrack(T)
 
 
 def MixtureCX(A:str|list, B:str|list, C:str|list) -> bool:
@@ -138,35 +122,23 @@ def MixtureCX(A:str|list, B:str|list, C:str|list) -> bool:
         (i,j) = Trial.pop()
         k = i + j
 
+        if k == s:
+            for tup in Trial: # TODO : Recopilar y devolver solución CX
+                print(tup)
 
-        if k >= s:
-            cnt=0
-            for i in range(s):
-                if cnt<n:
-                    if C[i]==A[cnt]:
-                        sol+="A"
-                        cnt+=1 
-                    else:
-                        sol+="B"      
-                else:
-                    if len(sol)<s:
-                        for i in range(s-len(sol)):
-                            sol+="B"
             return sol
-    
-        if i < n and A[i] == C[k] and (i+1,j) not in Known:
-            Trial.append((i+1,j))
-            Known.add((i+1,j))
 
-        if j < m and B[j] == C[k] and (i,j+1) not in Known:
-            Trial.append((i,j+1))
-            Known.add((i,j+1))
 
-    return False
-    
+        if i < n and A[i] == C[k] and (i+1, j) not in Known:
+            Trial.append((i+1, j))
+            Known.add((i+1, j))
 
-        
+        if j < m and B[j] == C[k] and (i, j+1) not in Known:
+            Trial.append((i, j+1))
+            Known.add((i, j+1))
 
+    else:
+        return False
 
 
 

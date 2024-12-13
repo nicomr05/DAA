@@ -57,7 +57,8 @@ for i in range(s):
             sol += "B"
             break
         cnt2+=1
-        
+
+
 for i in range(s):
     if i<n:
         j=i
