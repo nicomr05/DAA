@@ -33,10 +33,10 @@ def main() -> None:
     test(TEST_CASES, alg=MixtureDP)
     test(TEST_CASES, alg=MixtureCX)
 
-    dp_cout_names = ['O(nlog(n))', 'O(n²)', 'O(n²·²)']
+    dp_cout_names = ['O(nlog(n))', 'O(n²)', 'O(n²·³)']
     cx_cout_names = ['O(n)', 'O(nlog(n))', 'O(n²)']
 
-    dp_couts = lambda n: ( n*log(n), n**2, n**2.2 )
+    dp_couts = lambda n: ( n*log(n), n**2, n**2.3 )
     cx_couts = lambda n: ( n, n*log(n), n**2 )
 
     alphabet_names = ["BINARY", "ASCII", "AB-LENGTH"]

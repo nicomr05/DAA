@@ -107,9 +107,7 @@ def MixtureCX(A:str|list, B:str|list, C:str|list) -> bool:
     str
         String formed by As or Bs depending of which string it belonged to.
     '''
-    n = len(A)
-    m = len(B)
-    s = len(C)
+    n, m, s = len(A), len(B), len(C)
 
     if n + m != s:
         return False
@@ -119,7 +117,6 @@ def MixtureCX(A:str|list, B:str|list, C:str|list) -> bool:
     Sol = ""
 
     while len(Trial) > 0:
-        AddedA = False
         (i,j) = Trial.pop()
         k = i + j
 
@@ -131,9 +128,8 @@ def MixtureCX(A:str|list, B:str|list, C:str|list) -> bool:
             Trial.append((i+1, j))
             Known.add((i+1, j))
             Sol += "A"
-            AddedA = True
 
-        if j < m and B[j] == C[k] and (i, j+1) not in Known and not AddedA:
+        elif j < m and B[j] == C[k] and (i, j+1) not in Known:
             Trial.append((i, j+1))
             Known.add((i, j+1))
             Sol += "B"
